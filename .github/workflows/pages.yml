@@ -36,7 +36,7 @@ jobs:
         # Install npm packages and build the Storybook files
         run: |
           echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-          npm run install && npm run build && npm run export && && touch ./out/.nojekyll
+          npm run install && npm run build && npm run export && touch ./out/.nojekyll
       - name: List files in the repository after build
         run: |
           ls ${{ github.workspace }}
