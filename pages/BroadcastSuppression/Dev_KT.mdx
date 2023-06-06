@@ -1,0 +1,31 @@
+# Dev KT
+
+## State Management
+
+- All the state management for broadcast is under `state.draftMessages` as entire state management happens when the message is in draft stage
+
+- Newly added state variables
+
+    1. restoredLandlineNumbers - (Only numbers restored from Landline tab of third panel - this is required when the number is restored from landline and upon adding one more number it would be broadcast, so in such cases the icon and color should be consistent)
+    2. restoredPhoneNumbers - All the phone numbers restored (includes landline)
+    3. timeFrame - to store the timeFrame edited in case of RecruiterControlled broadcast
+    4. phoneTypes - Contains all the phoneTypes information
+
+
+There is one exception though, when the chip is inserted in the input, we get the details from threads, so we store the threads in `state.threadLists.threads`. But all the information after receiving is being processed and put in the format in the above draftMessages state.
+
+- API Changes
+
+    All the API contracts details can be found in resources section of Broadcast Suppression. Below is just Gist.
+
+    1. POST `phone-number-lookup` we get information about the broadcast_suppression_status, type of the phone, all other details from this API, it is called on every chip change in the input box. Need to optimize. In order to get the above details, we need to pass in an extra parameter `broadcastSuppressionSetting`.
+    2. GET `messages_v2/thread-list`, incase of broadcast chip, we get the details from this API. We need to pass 2 extra parameters `broadcast_suppression_number: value ,broadcast_suppression_unit: value`.
+
+
+### Areas to test
+
+- Web new message with individual and broadcast chips
+- Extension Grab numbers and add numbers to contact
+- TRM + Messaging integration
+
+

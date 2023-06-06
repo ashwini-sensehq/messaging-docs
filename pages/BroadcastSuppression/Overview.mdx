@@ -1,0 +1,38 @@
+# Overview
+
+## Need for Broadcast Suppression
+
+1. Broadcasts are one of the more dangerous features at Sense because they are likely to get carrier filtered. 
+2. One of the best ways to improve deliverability and avoid being filtered is to make sure the audience of a broadcast is better targeted and that recipients are not being inundated with redundant communication.
+
+
+## Settings
+
+1. How to enable Broadcast Suppression
+
+    1. Check if Brodacast Suppression flag is enabled for the agency from admin page[https://admin-me.sensehq.com/admin/product-flags/release-flags]
+    ![Admin page](./Images/AdminReleaseFlag.png)
+
+    2. Go to Settings page and under role, select your role, options to set Broadcast Suppression. As Shown in the image below ![](./Images/Settings.png)
+
+    3. Broadcast Suppression 
+        1. Type
+            1. Off (default and there will not be any suppression)
+            2. Forced / Admin Controlled (numbers that have already received a message within the selected interval are automatically removed from the broadcast. )
+            3. Optional / Recruiter Controlled (detected numbers are excluded from receiving the broadcast, but agents are given an option to add them back or to change the audience from agency wide to single phone number.)
+        2. Time
+            - Recruiters can edit the default time frame. Whatever they select is preserved and applied to the next time they compose a broadcast message.Recruiters can edit the default time frame. Whatever they select is preserved and applied to the next time they compose a broadcast message.
+
+
+## Broadcast Suppression Type - Forced / Admin Controlled
+    The suppressed numbers cannot be added back and also recruiter will not be able to send any message
+    ![Admin Controlled](./Images/AdminControlled.png)
+
+## Broadcast Suppression Type - Optional / Recruiter Controlled
+    Recruiter can edit the default time frame and also add the suppressed numbers back. But the time frame edited will be only last for this instance of sending message unlike the timeframe edited in settings page
+
+    ![Recruiter Controlled](./Images/RecruiterControlled.png)
+    
+    ![Edit Time Frame](./Images/EditTimeFrame.png)
+
+
