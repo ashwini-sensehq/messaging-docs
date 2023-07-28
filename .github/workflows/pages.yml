@@ -1,46 +1,39 @@
+# .github/workflows/build-and-deploy.yml
+
 name: Publish Messaging Docs to Github Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+    branches: [ stable ]
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v3
+        
+      # a standard step for GitHub actions on Node
+      # https://github.com/actions/setup-node
       - uses: actions/setup-node@v3
         with:
+          # update the Node version to meet your needs
           node-version: 18
-      - name: Install and Build 🔧
-        # Install npm packages and build the Storybook files
+          cache: npm
+
+      - name: Build
         run: |
-          echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-          npm run install && npm run build && npm run export && && touch ./out/.nojekyll
-      - name: List files in the repository after build
-        run: |
-          ls ${{ github.workspace }}
-          echo "🍏 This job's status is ${{ job.status }}."
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          npm ci
+          npm run build
+          npm run export
+          touch out/.nojekyll
+
+      - name: Deploy
+        # https://github.com/JamesIves/github-pages-deploy-action
+        uses: JamesIves/github-pages-deploy-action@4.4.0
+        with:
+          branch: gh-pages
+          folder: out
+
