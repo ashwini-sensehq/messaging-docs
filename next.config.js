@@ -5,9 +5,10 @@ const withNextra = require('nextra')({
 
 module.exports = withNextra({
   images:{
-    loader: "imgix",
-    path:''
+    // loader: "imgix",
+    // path:''
+    unoptimized: true,
   }
   ,
-  basePath: '/messaging-docs'
+  // basePath: '/messaging-docs'
 })
