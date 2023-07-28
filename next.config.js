@@ -8,4 +8,6 @@ module.exports = withNextra({
     loader: "imgix",
     path:''
   }
+  ,
+  basePath: '/messaging-docs'
 })
