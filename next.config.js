@@ -10,5 +10,5 @@ module.exports = withNextra({
     unoptimized: true,
   }
   ,
-  // basePath: '/messaging-docs'
+  basePath: '/messaging-docs'
 })
